@@ -1,0 +1,25 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Rollout
+metadata:
+  name: swiggy-app-rollout
+spec:
+  replicas: 6
+  selector:
+    matchLabels:
+      app: swiggy-app
+  template:
+    metadata:
+      labels:
+        app: swiggy-app
+    spec:
+      containers:
+      - name: swiggy-app
+        image: whymanan/aiplanet:1.2
+        ports:
+        - containerPort: 3000
+  strategy:
+    canary:
+      steps:
+      - setWeight: 20
+      - pause: {}
+      - setWeight: 100
