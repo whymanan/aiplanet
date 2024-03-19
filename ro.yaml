@@ -14,12 +14,12 @@ spec:
     spec:
       containers:
       - name: swiggy-app
-        image: whymanan/aiplanet:1.4
+        image: whymanan/aiplanet:1.5
         ports:
         - containerPort: 3000
   strategy:
     canary:
       steps:
-      - setWeight: 20
+      - setWeight: 50
       - pause: {}
       - setWeight: 100
